@@ -1,0 +1,38 @@
+body
+{
+    background-color:azure;
+}
+
+#main_container
+{
+    background-color: white;
+}
+
+#graph-card
+{
+ margin-top: 10%; 
+ padding:20px;  
+}
+
+#addValueBtn
+{
+    border:2px groove;
+    border-radius:15px;
+    padding: 5px;
+}
+
+.val-box
+{
+    padding:20px;
+    margin-top:20px;
+}
+
+.val-box select
+{
+    width:50%;
+}
+
+#gen-btn
+{
+    margin-top: 10px;
+}
