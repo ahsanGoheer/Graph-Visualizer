@@ -14,7 +14,16 @@
                     
                     <label for="xvalue">Enter the value of X:</label>
                     <input type="text" ng-model="gpc.xvalue" id="X"/>
-                    
+                    <div id="activ-options" style="text-align: center;">
+                        <label for="relu">RELU</label>
+                        <input type="radio" ng-model="activation" id="relu" value="relu"/>
+                        <label for="tanh">Tanh</label>
+                        <input type="radio" ng-model="activation" id="tanh" value="tanh"/>
+                        <label for="softmax">SOFTMAX</label>
+                        <input type="radio" ng-model="activation" id="softmax" value="softmax"/>
+                        <label for="sigmoid">SIGMOID</label>
+                        <input type="radio" ng-model="activation" id="sigmoid" value="sigmoid"/>
+                    </div>
                     <button id="addValueBtn" class="btn btn-primary" ng-click="gpc.update_values()">Add X </button>
                     
                 </div>
@@ -24,22 +33,23 @@
                 <div class="col-6 card val-box">
                     <label for="ValuesOfX" style="margin-top: 20px;">VALUES OF X</label>
                     <select id="xvalList" class="form-control" Name="ValuesOfX" Size=10>
-                        <option ng-repeat="item in gpc.values">{{item.x_val}}</option>
+                        <option ng-repeat="item in gpc.values">{{item.x}}</option>
                     </select>
                 </div>
                 <div class="col-6 card val-box">
                     <label for="ValuesOfY" style="margin-top: 20px;">VALUES OF Y</label>
                     <select id="yvalList" class="form-control" Name="ValuesOfX" Size=10>
-                        <option ng-repeat="item in gpc.values">{{item.y_val}}</option>
+                        <option ng-repeat="item in gpc.values">{{item.y}}</option>
                     </select>
                 </div>
             </div>
-            <div class="row justify-content-center">
+            <div class="row justify-content-center" ng-controller="ChartController as cc">
                 <div class="col-12 card graph-box">
                     <div id="gen-btn" style="text-align: center;">
-                        <button class="btn btn-primary">Generate Graph</button>
+                        <button class="btn btn-primary" ng-click="cc.GenChart()">Generate Graph</button>
                     </div>
-                    <canvas id="myChart" width="400" height="400"></canvas>
+                    
+                    <canvas id="myChart" width="200" height="200"></canvas>
                 </div>
             </div>
         </div>
@@ -48,5 +58,6 @@
 
         <script src="angular/angular.min.js"></script>
         <script src="js/app.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     </body>
 </html>

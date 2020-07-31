@@ -36,3 +36,12 @@ body
 {
     margin-top: 10px;
 }
+#activ-options
+{
+    padding:10px;
+}
+
+#activ-options input
+{
+    margin:5px;
+}
