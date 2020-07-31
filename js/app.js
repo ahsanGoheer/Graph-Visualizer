@@ -12,7 +12,7 @@ function GraphPlotController(InputValueHandler)
    var inputHandler=this;
    inputHandler.values=[];
    inputHandler.radios = document.querySelectorAll(".act-class");
-   
+   inputHandler.activation='relu';
 
    inputHandler.update_values=function()
    {
@@ -126,7 +126,14 @@ function InputValueHandler()
     {
         if(act_function==='relu')
         {
-            return value>0?value:0;
+           if(value>0)
+           {
+               return value;
+           }
+           else
+           {
+               return 0;
+           }
         }
         else if(act_function==='tanh')
         {
