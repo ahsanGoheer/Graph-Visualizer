@@ -10,19 +10,22 @@
     <body ng-app="GraphPlotter">
         <div class="container" id="main-container" ng-controller="GraphPlotController as gpc">
             <div class="row justify-content-center" >
+                <div class="col-12 card" style="text-align: center;">
+                    <h1>GRAPH VISUALIZER</h1>
+                </div>
+            </div>
+            <div class="row justify-content-center" >
                 <div class="col-12 card" id="graph-card">
                     
                     <label for="xvalue">Enter the value of X:</label>
                     <input type="text" ng-model="gpc.xvalue" id="X"/>
                     <div id="activ-options" style="text-align: center;">
                         <label for="relu">RELU</label>
-                        <input type="radio" ng-model="activation" id="relu" value="relu"/>
+                        <input class="act-class" type="radio" ng-model="gpc.activation" id="relu" ng-checked="true" value="relu" />
                         <label for="tanh">Tanh</label>
-                        <input type="radio" ng-model="activation" id="tanh" value="tanh"/>
-                        <label for="softmax">SOFTMAX</label>
-                        <input type="radio" ng-model="activation" id="softmax" value="softmax"/>
+                        <input class="act-class" type="radio" ng-model="gpc.activation" id="tanh" value="tanh"/>
                         <label for="sigmoid">SIGMOID</label>
-                        <input type="radio" ng-model="activation" id="sigmoid" value="sigmoid"/>
+                        <input class="act-class" type="radio" ng-model="gpc.activation" id="sigmoid" value="sigmoid"/>
                     </div>
                     <button id="addValueBtn" class="btn btn-primary" ng-click="gpc.update_values()">Add X </button>
                     

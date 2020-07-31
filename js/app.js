@@ -10,14 +10,26 @@ GraphPlotController.$inject=["InputValueHandler"];
 function GraphPlotController(InputValueHandler)
 {
    var inputHandler=this;
-  inputHandler.values=[];
-     
+   inputHandler.values=[];
+   inputHandler.radios = document.querySelectorAll(".act-class");
+   
+
    inputHandler.update_values=function()
    {
-    
+       disable_controls(inputHandler.radios);
+       console.log(inputHandler.radios);
+       console.log(inputHandler.activation);
+       InputValueHandler.setActivation(inputHandler.activation);
        inputHandler.values=InputValueHandler.updateVal(inputHandler.xvalue);
-    
        console.log(inputHandler.values);
+   }
+
+   function disable_controls(controls)
+   {
+       for(var i=0;i<controls.length;i++)
+       {
+           controls[i].disabled=true;
+       }
    }
 }
 
@@ -81,17 +93,62 @@ function InputValueHandler()
 {
     var service =this;
     var value_list=[];
+    var act_function='';
+    service.setActivation=function(activation)
+    {
+        act_function=activation;
+    }
     service.updateVal=function(value)
     {
-        var val={x:value,y:0}
-        val=add_y(val);
-        value_list.push(val);
+       
+        if(value!=undefined)
+        {
+            var val={x:parseFloat(value),y:0}
+            val=add_y(val);
+            value_list.push(val);
+        }
+        else
+        {
+            
+            var val={x:0,y:0}
+            val=add_y(val);
+            value_list.push(val);
+        }
+        
         return value_list;
     }
     function add_y(value)
     {
-        value.y=value.x;
+        value.y=apply_function(value.x);
         return value;
+    }
+    function apply_function(value)
+    {
+        if(act_function==='relu')
+        {
+            return value>0?value:0;
+        }
+        else if(act_function==='tanh')
+        {
+            return tanh(value);
+        }
+        else if(act_function==='sigmoid')
+        {
+            return sigmoid(value);
+        }
+        return 0;
+    }
+
+    function tanh(x)
+    {
+        
+        
+        return (Math.exp(x)-Math.exp(-x))/(Math.exp(x)+Math.exp(-x));
+    }
+    function sigmoid(x)
+    {
+       
+        return Math.exp(x)/(Math.exp(x)+1);
     }
     service.getChartData=function()
     {
